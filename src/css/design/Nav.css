@@ -1,0 +1,64 @@
+.navBar {
+  position: relative;
+  width: 98%;
+  height: 70px;
+  margin-top: 1%;
+  margin-left: 1%;
+}
+.navBar-children {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: #5aada8;
+  border-radius: 10px 60px 10px 10px;
+}
+
+.component-logo {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  margin-left: 10px;
+}
+
+.text-logo {
+  position: absolute;
+  right: 80.29%;
+  top: 5%;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 22px;
+  line-height: 22px;
+  /* identical to box height */
+
+  color: #282c34;
+}
+
+.container-search {
+  position: absolute;
+  left: 78.78%;
+  right: 0.58%;
+  top: 7.14%;
+  bottom: 7.14%;
+
+  background: rgba(217, 217, 217, 0.11);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 3035px 10px 10px;
+}
+
+.input-search {
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  left: 10%;
+  right: 3.01%;
+  top: 15%;
+  bottom: 28.57%;
+
+  background: #d9d9d9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}

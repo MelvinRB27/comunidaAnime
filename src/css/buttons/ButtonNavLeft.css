@@ -1,0 +1,30 @@
+.container-btn-nav-left {
+  position: relative;
+  width: 190px;
+  height: 40px;
+}
+.container-btn-nav-left .circle-btn-nav-left {
+  position: absolute;
+  left: 7.5%;
+  top: 30%;
+  bottom: 31.58%;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+.container-btn-nav-left .btn-nav-left {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  margin-top: 5%;
+  color: black;
+  background: #d9d9d9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px 50px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 18px;
+}

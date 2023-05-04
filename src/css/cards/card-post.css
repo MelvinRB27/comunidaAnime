@@ -1,0 +1,48 @@
+.container-card-post {
+  position: relative;
+  width: 438px;
+  height: 130px;
+  margin-bottom: 5%;
+}
+.card-post-children {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #d9d9d9;
+  border-radius: 20px 60px;
+}
+
+.avatar-card-post {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: -10%;
+  left: 5%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.nameUser-card-post {
+  position: absolute;
+  left: 20.55%;
+  right: 46.58%;
+  top: 5%;
+
+  font-family: "Kyiv*Type Serif";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+.message-card-post {
+  position: absolute;
+  left: 25.54%;
+  top: 27.03%;
+
+  font-family: "Kyiv*Type Serif";
+  font-style: normal;
+  font-weight: 350;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #141111;
+}

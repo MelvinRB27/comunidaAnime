@@ -1,0 +1,48 @@
+.container-card-write {
+  position: relative;
+  width: 60%;
+  height: 200px;
+  /* margin: auto; */
+  margin-bottom: 25px;
+}
+
+.container-input {
+  position: relative;
+  background: rgba(217, 217, 217, 0.13);
+  height: 100%;
+  border-radius: 0px 0px 0px 100px;
+}
+
+.text-input-post {
+  position: relative;
+  width: 591px;
+  height: 24px;
+  left: 18px;
+  top: 8px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #ffffff;
+}
+
+.input-post {
+  position: relative;
+  width: 90%;
+  left: 2.6%;
+  top: 5%;
+  color: white;
+  background: rgba(217, 217, 217, 0.19);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 0px 100px;
+}
+
+.container-card-write .btn-post {
+  position: relative;
+  float: right;
+  top: 15%;
+  right: 6%;
+}
