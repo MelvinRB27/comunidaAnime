@@ -28,6 +28,32 @@
   color: #61dafb;
 }
 
+.container-left {
+  width: 20%;
+}
+
+.container-center {
+  width: 75%;
+}
+
+.container-right {
+  width: none;
+}
+
+@media only screen and (min-width: 1500px) {
+  .container-left {
+    width: 17%;
+  }
+
+  .container-center {
+    width: 70%;
+  }
+
+  .container-right {
+    width: 13%;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +61,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.containerApp .scroll-to-top {
+  background-color: #5aada781;
+  right: 40px;
+  bottom: 40px;
+  position: fixed;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: opacity 1s ease-in-out;
+  box-shadow: 0 9px 25px 0 rgb(132 128 177 / 28%);
+  border: none;
+  outline: none;
+}
+
+.scroll-to-top svg {
+  fill: white;
+  height: 20px;
 }

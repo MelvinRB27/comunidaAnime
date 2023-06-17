@@ -2,12 +2,25 @@ import * as reactComponent from "@mui/material";
 import { Link } from "react-router-dom";
 
 import CardPremiere from "./card-premiere";
-import GetAnime from "../../api/apiAxios";
+import { GetAnime } from "../../api/apiAxios";
 import Spinner from "../spinner/spinner";
 import Button from "../../components/buttons/buttons";
 
-const GroupCardPremiereHome = ({ title, countCard,  url, path }) => {
+//helpers
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+const GroupCardPremiereHome = ({ title, countCard, url, path }) => {
+  const [dateAnime, setDateAnime] = useState([]);
+  const valorGlobal = useSelector((state) => state.globalValue.animeSearch);
   const [data, error] = GetAnime(url);
+
+  // console.log("qqqqq", valorGlobal);
+  let val = valorGlobal.length > 0 ? valorGlobal : data;
+
+  useEffect(() => {
+    setDateAnime(val);
+  }, [val]);
+
   return (
     <>
       <h3 className="title-grop-premiere">{title}</h3>
@@ -17,11 +30,10 @@ const GroupCardPremiereHome = ({ title, countCard,  url, path }) => {
       >
         {error === null ? (
           <h3> ERROR</h3>
-        ) : data.length === 0 ? (
+        ) : dateAnime.length === 0 ? (
           <Spinner />
         ) : (
-          data.map(({ id, attributes }, index) => {
-            // console.log(attributes)
+          dateAnime.map(({ id, attributes }, index) => {
             if (index < countCard) {
               return (
                 <reactComponent.Grid
@@ -39,7 +51,12 @@ const GroupCardPremiereHome = ({ title, countCard,  url, path }) => {
                       attributes.description.substring(0, 100) + "..."
                     }
                     date={attributes.createdAt}
-                    imagePremiere={attributes.posterImage ? attributes.posterImage.original : attributes.coverImage.original}
+                    imagePremiere={
+                      attributes.posterImage
+                        ? attributes.posterImage.original
+                        : attributes.coverImage.original
+                    }
+                    id={id}
                   />
                 </reactComponent.Grid>
               );
@@ -49,7 +66,13 @@ const GroupCardPremiereHome = ({ title, countCard,  url, path }) => {
         )}
       </reactComponent.Grid>
       <Link to={path}>
-        <Button nameButton="Ver más" background="#5aada8" colorText="black" />
+        <Button
+          className="btnSeen"
+          nameButton="Ver más"
+          background="#5aada8"
+          colorText="black"
+          sizeWidth="110px"
+        />
       </Link>
     </>
   );

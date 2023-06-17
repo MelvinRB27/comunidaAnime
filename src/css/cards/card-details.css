@@ -1,0 +1,130 @@
+.container-card-details {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  margin-top: 1%;
+  /* background: #0a1929; */
+  /* background: red; */
+}
+
+.rectangle-cover {
+  position: relative;
+  top: 20%;
+  width: 100%;
+  height: 180px;
+
+  background: #d9d9d9;
+}
+
+.ellipse-rating {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  float: right;
+  right: 1.5%;
+  bottom: -50%;
+  border-radius: 50%;
+  background: #0a1929;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rating-popularity {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  float: right;
+  right: 7%;
+  bottom: -65%;
+}
+.number-rating-popularity {
+  position: relative;
+  /* float: right; */
+  /* right: -5%;
+  bottom: -55%; */
+  color: white;
+}
+
+.description-details {
+  position: relative;
+  float: right;
+  width: 420px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 15px;
+  color: white;
+}
+
+.div-cover-title {
+  display: flex;
+  gap: 35px;
+  position: relative;
+  top: -23%;
+  left: 2%;
+}
+.div-title {
+  display: inline-block;
+  text-transform: capitalize;
+  margin: 0;
+  margin-top: 5%;
+}
+
+span {
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+}
+
+.text-trailer {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 25px;
+  text-decoration: overline;
+  margin-top: 10%;
+  margin-left: 10px;
+
+  color: #ffffff;
+}
+.container-iframe-trailer {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.iframe-video {
+  margin-bottom: 7%;
+}
+
+.div-cover-title .avatar-card-details {
+  position: relative;
+  left: 3%;
+  width: 350;
+  height: 500px;
+  object-fit: fill;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  /* background: url(https://media.kitsu.io/anime/poster_images/4/original.jpg); */
+}
+
+@media only screen and (min-width: 1500px) {
+  .div-cover-title {
+    gap: 45px;
+  }
+  .div-title {
+    margin-top: 3%;
+  }
+
+  .description-details {
+    width: 850px;
+    font-size: 20px;
+    margin-top: 2%;
+  }
+  .iframe-video {
+    text-align: center;
+    float: right;
+    align-items: center;
+    margin-bottom: 7%;
+  }
+}

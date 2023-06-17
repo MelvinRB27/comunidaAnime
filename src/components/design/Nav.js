@@ -1,8 +1,19 @@
-import * as reactComponent from "@mui/material";
+// import * as reactComponent from "@mui/material";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
+import { GetAnimeByParamas } from "../../api/apiAxios";
 import "../../css/design/Nav.css";
+
 const Nav = () => {
+  const [result, setResult] = useState("");
+  GetAnimeByParamas("https://kitsu.io/api/edge/anime", result);
+
+  const handleInputChange = async (event) => {
+    const value = event.target.value;
+    setResult(value);
+  };
+
   return (
     <div className="navBar">
       <div className="navBar-children">
@@ -25,7 +36,12 @@ const Nav = () => {
         </Link>
 
         <div className="container-search">
-          <reactComponent.Input className="input-search"></reactComponent.Input>
+          <input
+            className="input-search"
+            type="text"
+            value={result}
+            onChange={handleInputChange}
+          ></input>
         </div>
       </div>
     </div>

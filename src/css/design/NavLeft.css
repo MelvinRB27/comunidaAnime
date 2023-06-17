@@ -1,6 +1,6 @@
 .nav-left-btns {
   position: relative;
   width: 250px;
-  height: 209px;
+  height: auto !important;
   margin-left: 5%;
 }
