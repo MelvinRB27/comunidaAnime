@@ -1,14 +1,19 @@
 import "../../css/cards/card-comunity.css";
-import * as reactComponent from "@mui/material";
+import { Link } from "react-router-dom";
 
-const CardComunity = ({ nameComunity, imageComunity, members }) => {
+const CardComunity = ({ nameComunity, imageComunity, id }) => {
   return (
     <div className="container-card-comunity">
+      <Link to={"/details-anime/" + id}>
         <div className="container-children-card-comunity">
-            <reactComponent.Avatar src={imageComunity} className="avatar-card-comunity"/>
-            <h4 className="nameComunity-card-comunity">{nameComunity}</h4>
-            <h4 className="members-card-comunity">{members}</h4>
+          <img
+            alt="cover"
+            src={imageComunity}
+            className="avatar-card-comunity"
+          />
+          <h4 className="nameComunity-card-comunity">{nameComunity}</h4>
         </div>
+      </Link>
     </div>
   );
 };

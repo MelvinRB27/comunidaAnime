@@ -1,36 +1,47 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
 
-//pages
-import Home from "./pages/home/home";
-import Posts from "./pages/posts/userPosts";
-import MostPopularity from "./pages/animes/mostPopular";
 //components
 import Nav from "./components/design/Nav";
 import NavLeft from "./components/design/NavLeft";
 import YourComunity from "./components/cards/your-comunity";
+// import CustomSelect from "./components/selects/CustomSelect";
+//Routes
+import LinksRoutes from "./routes/routes";
+
+import ScrollToTop from "react-scroll-to-top";
+
 const App = () => {
+  let docTitle = document.title;
+  window.addEventListener("blur", () => {
+    document.title = "Regresa";
+  });
+
+  window.addEventListener("focus", () => {
+    document.title = docTitle;
+  });
+
+  // const options = [
+  //   { value: "action", label: "Acción" },
+  //   { value: "violence", label: "Violencia" },
+  //   { value: "children", label: "Children" },
+  //   // Agrega más opciones según tus necesidades
+  // ];
   return (
     <div className="containerApp">
       <Nav />
-      <div style={{display: 'flex'}}>
-        <div style={{/*background: 'red',*/ width: '17%'}}>
+      <div style={{ display: "flex" }}>
+        <div className="container-left">
           <NavLeft />
           <YourComunity />
         </div>
-        <div style={{/*background: 'green',*/ width: '70%'}}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/user-posts" element={<Posts />} />
-            <Route path="/most-popularity" element={<MostPopularity />} />
-          </Routes>
+        <div className="container-center">
+          <LinksRoutes />
         </div>
-        <div style={{/*background: 'black',*/ width: '13%'}}>
-          <div>
-
-          </div>
+        <div className="container-right">
+          <div>{/* <CustomSelect options={options} title="Género" /> */}</div>
         </div>
       </div>
+      <ScrollToTop smooth />
     </div>
   );
 };
