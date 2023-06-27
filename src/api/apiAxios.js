@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 //helpers
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setLoading,
   setAnimeSearch,
@@ -11,9 +11,11 @@ import {
 export const GetAnime = (url) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getAnimes = async () => {
+      dispatch(setLoading(true));
       await axios
         .get(url)
         .then((resp) => {
@@ -22,10 +24,49 @@ export const GetAnime = (url) => {
         .catch((err) => {
           setError(err);
         })
-        .finally();
+        .finally(() => {
+          dispatch(setLoading(false));
+        });
     };
     getAnimes();
-  }, [url]);
+  }, [url, dispatch]);
+
+  return [data, error];
+};
+
+export const GetAllAnime = (url, page, limit) => {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState();
+  const dispatch = useDispatch();
+
+  const genderSelected = useSelector(
+    (state) => state.globalValue.genderSelected
+  );
+  useEffect(() => {
+    const params = {
+      "filter[genres]": genderSelected === "null" ? null : genderSelected,
+      "page[limit]": limit,
+      "page[offset]": (page - 1) * limit,
+    };
+    const getAllAnime = async () => {
+      dispatch(setLoading(true));
+      await axios
+        .get(url, { params })
+        .then((resp) => {
+          setData(resp.data.data);
+          let numer = Math.round(resp.data.meta.count / 20);
+          numer = numer % 2 === 1 ? numer + 1 : numer; //VALIDA SI EL NUMERO ES IMPAR, SI LO ES LE SUMA 1, SI NO PUES SE QUEDA IGUAL
+          dispatch(setTotalPages(numer));
+        })
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(() => {
+          dispatch(setLoading(false));
+        });
+    };
+    getAllAnime();
+  }, [url, page, limit, dispatch, genderSelected]);
 
   return [data, error];
 };
@@ -66,7 +107,11 @@ export const GetAnimeByParamas = (url, param) => {
         .get(url + params)
         .then((resp) => {
           setData(resp.data.data);
-          dispatch(setAnimeSearch(resp.data.data));
+          param && param !== "empty"
+            ? dispatch(setAnimeSearch(resp.data.data))
+            : param === "empty"
+            ? dispatch(setAnimeSearch("empty"))
+            : dispatch(setAnimeSearch([]));
         })
         .catch((err) => {
           setError(err);
@@ -155,7 +200,7 @@ export const Get4AnimeTrending = (url) => {
 
   useEffect(() => {
     dispatch(setLoading(true));
-    const getAnimeInUpcoming = async () => {
+    const get4AnimeTrending = async () => {
       await axios
         .get(url)
         .then((resp) => {
@@ -168,8 +213,41 @@ export const Get4AnimeTrending = (url) => {
           dispatch(setLoading(false));
         });
     };
-    getAnimeInUpcoming();
+    get4AnimeTrending();
   }, [url, dispatch]);
+
+  return [data, error];
+};
+
+export const GetAllGenders = () => {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    const getAllGenders = async () => {
+      await axios
+        .get("https://kitsu.io/api/edge/genres")
+        .then((resp) => {
+          let Genders = [];
+          resp.data.data.forEach((element) => {
+            Genders.push({
+              label: element.attributes.name,
+              value: element.attributes.name,
+            });
+          });
+          setData(Genders);
+        })
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(() => {
+          dispatch(setLoading(false));
+        });
+    };
+    getAllGenders();
+  }, [dispatch]);
 
   return [data, error];
 };

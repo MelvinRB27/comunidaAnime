@@ -7,11 +7,19 @@ import Pagination from "../../components/pagination/Pagination";
 
 import { GetAnimeInUpcoming } from "../../api/apiAxios";
 
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import { setCurrentPage } from "../../redux/GlobalReduxValue";
 
 const AnimeUpcoming = () => {
   const currentPage = useSelector((state) => state.globalValue.currentPage);
   const loading = useSelector((state) => state.globalValue.loading);
+
+  //tomar el parametro de la URL
+  const { page } = useParams();
+  const dispatch = useDispatch();
+  dispatch(setCurrentPage(page)); //Camniar el currentPage
 
   const [data, error] = GetAnimeInUpcoming(
     "https://kitsu.io/api/edge/anime",
@@ -30,7 +38,7 @@ const AnimeUpcoming = () => {
         ) : loading ? (
           <Spinner />
         ) : (
-          data.map(({ id, attributes, index }) => {
+          data.map(({ id, attributes }, index) => {
             return (
               <reactComponent.Grid
                 item
@@ -44,9 +52,9 @@ const AnimeUpcoming = () => {
                 <CardPremiere
                   imagePremiere={attributes.posterImage.original}
                   titleAnime={attributes.canonicalTitle}
-                  resumeAnime={attributes.description.substring(0, 100) + "..."}
+                  resumeAnime={attributes.description.substring(0, 40) + "..."}
                   id={id}
-                  //   date={attributes.createdAt}
+                  date={attributes.createdAt.substring(0, 10)}
                 />
               </reactComponent.Grid>
             );

@@ -4,41 +4,33 @@ import * as reactComponent from "@mui/material";
 import Spinner from "../../components/spinner/spinner";
 import CardPremiere from "../../components/cards/card-premiere";
 import Pagination from "../../components/pagination/Pagination";
-import { GetAnimeInBroadcast } from "../../api/apiAxios";
 
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+//helpers
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
-import { setCurrentPage } from "../../redux/GlobalReduxValue";
-
-const AnimeInBroadcast = () => {
-  const currentPage = useSelector((state) => state.globalValue.currentPage);
+const ResultSearch = () => {
+  const [dateAnime, setDateAnime] = useState([]);
+  const valorGlobal = useSelector((state) => state.globalValue.animeSearch);
   const loading = useSelector((state) => state.globalValue.loading);
 
-  //tomar el parametro de la URL
-  const { page } = useParams();
-  const dispatch = useDispatch();
-  dispatch(setCurrentPage(page)); //Camniar el currentPage
+  let val = valorGlobal.length > 0 ? valorGlobal : null;
 
-  const [data, error] = GetAnimeInBroadcast(
-    "https://kitsu.io/api/edge/anime",
-    currentPage,
-    20
-  );
+  useEffect(() => {
+    setDateAnime(val);
+  }, [val]);
 
   return (
     <>
-      <h3 className="title-grop-premiere">En Emisión</h3>
+      <h3 className="title-grop-premiere">Resultado</h3>
       <reactComponent.Grid
         container
         columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
       >
-        {error === null ? (
-          <h3> ERROR</h3>
-        ) : loading ? (
+        {loading ? (
           <Spinner />
-        ) : (
-          data.map(({ id, attributes }, index) => {
+        ) : dateAnime !== null ? (
+          dateAnime.map(({ id, attributes }, index) => {
             return (
               <reactComponent.Grid
                 item
@@ -50,19 +42,27 @@ const AnimeInBroadcast = () => {
                 className="container-grop-premiere"
               >
                 <CardPremiere
-                  imagePremiere={attributes.posterImage.original}
                   titleAnime={attributes.canonicalTitle}
                   resumeAnime={
                     attributes.description
                       ? attributes.description.substring(0, 40) + "..."
-                      : ""
+                      : "..."
+                  }
+                  date={attributes.createdAt.substring(0, 10)}
+                  imagePremiere={
+                    attributes.posterImage
+                      ? attributes.posterImage.original
+                      : attributes.coverImage.original
                   }
                   id={id}
-                  date={attributes.createdAt.substring(0, 10)}
                 />
               </reactComponent.Grid>
             );
           })
+        ) : (
+          <h3 style={{ width: "100%", textAlign: "center", color: "white" }}>
+            Sin resultados
+          </h3>
         )}
       </reactComponent.Grid>
       {loading ? <></> : <Pagination />}
@@ -70,4 +70,4 @@ const AnimeInBroadcast = () => {
   );
 };
 
-export default AnimeInBroadcast;
+export default ResultSearch;

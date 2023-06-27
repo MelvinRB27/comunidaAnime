@@ -9,9 +9,14 @@ const Nav = () => {
   const [result, setResult] = useState("");
   GetAnimeByParamas("https://kitsu.io/api/edge/anime", result);
 
+  let valueInput;
   const handleInputChange = async (event) => {
     const value = event.target.value;
-    setResult(value);
+    if (event.target.value.length > 0) {
+      setResult(value);
+      valueInput = value;
+    } else setResult("empty");
+    valueInput = "";
   };
 
   return (
@@ -39,7 +44,7 @@ const Nav = () => {
           <input
             className="input-search"
             type="text"
-            value={result}
+            value={valueInput}
             onChange={handleInputChange}
           ></input>
         </div>

@@ -54,8 +54,8 @@ import Spinner from "../spinner/spinner";
 // ];
 
 const GroupCardPremiere = () => {
-  const [data, error] = GetAnime('https://kitsu.io/api/edge/trending/anime');
-  console.log("|",data)
+  const [data, error] = GetAnime("https://kitsu.io/api/edge/trending/anime");
+  console.log("|", data);
   return (
     <>
       <h3 className="title-grop-premiere">
@@ -65,31 +65,32 @@ const GroupCardPremiere = () => {
         container
         columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
       >
-        {
-        error === null ? (<h3> ERROR</h3>) :
-        
-        data.length === 0 ? <Spinner /> :
-        
-        data.map(({attributes, index}) => {
-          return (
-            <reactComponent.Grid                                                                                           
-              item
-              xs={3}
-              sm={4}
-              md={6}
-              xl={4}
-              key={index}
-              className="container-grop-premiere"
-            >
-              <CardPremiere
-                titleAnime = {attributes.canonicalTitle}
-                resumeAnime= {attributes.description.substring(0, 100) + '...'}
-                date= {attributes.createdAt}
-                imagePremiere= {attributes.coverImage.original}
-              />
-            </reactComponent.Grid>
-          );
-        })}
+        {error === null ? (
+          <h3> ERROR</h3>
+        ) : data.length === 0 ? (
+          <Spinner />
+        ) : (
+          data.map(({ attributes }, index) => {
+            return (
+              <reactComponent.Grid
+                item
+                xs={3}
+                sm={4}
+                md={6}
+                xl={4}
+                key={index}
+                className="container-grop-premiere"
+              >
+                <CardPremiere
+                  titleAnime={attributes.canonicalTitle}
+                  resumeAnime={attributes.description.substring(0, 100) + "..."}
+                  date={attributes.createdAt}
+                  imagePremiere={attributes.coverImage.original}
+                />
+              </reactComponent.Grid>
+            );
+          })
+        )}
       </reactComponent.Grid>
     </>
   );
