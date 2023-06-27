@@ -1,25 +1,23 @@
 //css
 import "../../css/selects/CustomSelect.css";
 
-import { useState } from "react";
-
-const CustomSelect = ({ options, title }) => {
-  const [selectValue, setSelectValue] = useState("");
-
+const CustomSelect = ({ options, title, disabled = false, onChange }) => {
   const handleChange = (event) => {
-    console.log("sss", event.target.value);
-    setSelectValue(event.target.value);
+    if (onChange) {
+      onChange(event.target.value);
+    }
   };
   return (
     <>
       <h3 className="title-select">{title}</h3>
       <select
+        disabled={disabled}
         id="select-custom-1"
-        value={selectValue}
         label="Género"
         onChange={handleChange}
         className="select-custom"
       >
+        <option value="null">Todos</option>;
         {options.map(({ value, label }, index) => {
           return (
             <option value={value} key={index}>

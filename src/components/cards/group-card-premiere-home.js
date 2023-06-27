@@ -8,18 +8,10 @@ import Button from "../../components/buttons/buttons";
 
 //helpers
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+
 const GroupCardPremiereHome = ({ title, countCard, url, path }) => {
-  const [dateAnime, setDateAnime] = useState([]);
-  const valorGlobal = useSelector((state) => state.globalValue.animeSearch);
+  const loading = useSelector((state) => state.globalValue.loading);
   const [data, error] = GetAnime(url);
-
-  // console.log("qqqqq", valorGlobal);
-  let val = valorGlobal.length > 0 ? valorGlobal : data;
-
-  useEffect(() => {
-    setDateAnime(val);
-  }, [val]);
 
   return (
     <>
@@ -30,10 +22,10 @@ const GroupCardPremiereHome = ({ title, countCard, url, path }) => {
       >
         {error === null ? (
           <h3> ERROR</h3>
-        ) : dateAnime.length === 0 ? (
+        ) : loading === 0 ? (
           <Spinner />
         ) : (
-          dateAnime.map(({ id, attributes }, index) => {
+          data.map(({ id, attributes }, index) => {
             if (index < countCard) {
               return (
                 <reactComponent.Grid
@@ -42,15 +34,15 @@ const GroupCardPremiereHome = ({ title, countCard, url, path }) => {
                   sm={4}
                   md={6}
                   xl={4}
-                  key={id}
+                  key={index}
                   className="container-grop-premiere"
                 >
                   <CardPremiere
                     titleAnime={attributes.canonicalTitle}
                     resumeAnime={
-                      attributes.description.substring(0, 100) + "..."
+                      attributes.description.substring(0, 40) + "..."
                     }
-                    date={attributes.createdAt}
+                    date={attributes.createdAt.substring(0, 10)}
                     imagePremiere={
                       attributes.posterImage
                         ? attributes.posterImage.original

@@ -3,12 +3,15 @@ import "./App.css";
 //components
 import Nav from "./components/design/Nav";
 import NavLeft from "./components/design/NavLeft";
+import NavRigth from "./components/design/NavRigth";
 import YourComunity from "./components/cards/your-comunity";
-// import CustomSelect from "./components/selects/CustomSelect";
 //Routes
 import LinksRoutes from "./routes/routes";
 
 import ScrollToTop from "react-scroll-to-top";
+
+//helper
+import RedirectResutl from "./helpers/redirects/redirectResults";
 
 const App = () => {
   let docTitle = document.title;
@@ -20,12 +23,8 @@ const App = () => {
     document.title = docTitle;
   });
 
-  // const options = [
-  //   { value: "action", label: "Acción" },
-  //   { value: "violence", label: "Violencia" },
-  //   { value: "children", label: "Children" },
-  //   // Agrega más opciones según tus necesidades
-  // ];
+  RedirectResutl();
+
   return (
     <div className="containerApp">
       <Nav />
@@ -38,7 +37,7 @@ const App = () => {
           <LinksRoutes />
         </div>
         <div className="container-right">
-          <div>{/* <CustomSelect options={options} title="Género" /> */}</div>
+          <NavRigth />
         </div>
       </div>
       <ScrollToTop smooth />

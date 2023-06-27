@@ -7,6 +7,7 @@ const valueGlobalSlice = createSlice({
     animeSearch: [],
     currentPage: 1,
     totalPages: 0,
+    genderSelected: null,
   },
   reducers: {
     setLoading: (state, action) => {
@@ -21,9 +22,17 @@ const valueGlobalSlice = createSlice({
     setTotalPages: (state, action) => {
       state.totalPages = action.payload;
     },
+    setGenderSelecte: (state, action) => {
+      state.genderSelected = action.payload;
+    },
   },
 });
 
-export const { setLoading, setAnimeSearch, setTotalPages, setCurrentPage } =
-  valueGlobalSlice.actions;
+export const {
+  setLoading,
+  setAnimeSearch,
+  setTotalPages,
+  setCurrentPage,
+  setGenderSelecte,
+} = valueGlobalSlice.actions;
 export default valueGlobalSlice.reducer;

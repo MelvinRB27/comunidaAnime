@@ -3,20 +3,39 @@ import * as reactComponent from "@mui/material";
 //components
 import Spinner from "../../components/spinner/spinner";
 import CardPremiere from "../../components/cards/card-premiere";
+import Pagination from "../../components/pagination/Pagination";
 
-import { GetAnime } from "../../api/apiAxios";
-const MostPopularity = () => {
-  const [data, error] = GetAnime("https://kitsu.io/api/edge/trending/anime");
+import { GetAllAnime } from "../../api/apiAxios";
+
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import { setCurrentPage } from "../../redux/GlobalReduxValue";
+
+const AllAnime = () => {
+  const currentPage = useSelector((state) => state.globalValue.currentPage);
+  const loading = useSelector((state) => state.globalValue.loading);
+
+  //tomar el parametro de la URL
+  const { page } = useParams();
+  const dispatch = useDispatch();
+  dispatch(setCurrentPage(page)); //Camniar el currentPage
+
+  const [data, error] = GetAllAnime(
+    "https://kitsu.io/api/edge/anime",
+    currentPage,
+    20
+  );
   return (
     <>
-      <h3 className="title-grop-premiere">Los animes más populares</h3>
+      <h3 className="title-grop-premiere">TODOS</h3>
       <reactComponent.Grid
         container
         columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
       >
         {error === null ? (
           <h3> ERROR</h3>
-        ) : data.length === 0 ? (
+        ) : loading ? (
           <Spinner />
         ) : (
           data.map(({ id, attributes }, index) => {
@@ -42,8 +61,9 @@ const MostPopularity = () => {
           })
         )}
       </reactComponent.Grid>
+      {loading ? <></> : <Pagination />}
     </>
   );
 };
 
-export default MostPopularity;
+export default AllAnime;
