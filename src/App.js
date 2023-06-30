@@ -11,7 +11,7 @@ import LinksRoutes from "./routes/routes";
 import ScrollToTop from "react-scroll-to-top";
 
 //helper
-import RedirectResutl from "./helpers/redirects/redirectResults";
+// import RedirectResutl from "./helpers/redirects/redirectResults";
 
 const App = () => {
   let docTitle = document.title;
@@ -23,7 +23,7 @@ const App = () => {
     document.title = docTitle;
   });
 
-  RedirectResutl();
+  // RedirectResutl();
 
   return (
     <div className="containerApp">
