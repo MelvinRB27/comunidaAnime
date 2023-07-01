@@ -20,7 +20,7 @@ const ResultSearch = () => {
   dispatch(setCurrentPage(page)); //Camniar el currentPage
 
   const currentPage = useSelector((state) => state.globalValue.currentPage);
-  const [valorGlobal, error] = GetAnimeByParamas(
+  const [valorGlobal] = GetAnimeByParamas(
     "https://kitsu.io/api/edge/anime",
     currentPage,
     search
