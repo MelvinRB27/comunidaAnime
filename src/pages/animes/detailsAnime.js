@@ -9,7 +9,7 @@ const DetailsAnime = () => {
   const { id } = useParams();
   const [data, error] = GetAnimeById("https://kitsu.io/api/edge/anime", id);
 
-  console.log("Details", data);
+  // console.log("Details", data);
 
   return (
     <>
