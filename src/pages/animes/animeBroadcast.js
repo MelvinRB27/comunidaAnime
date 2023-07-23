@@ -36,7 +36,7 @@ const AnimeInBroadcast = () => {
         {error === null ? (
           <h3> ERROR</h3>
         ) : loading ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : (
           data.map(({ id, attributes }, index) => {
             return (

@@ -20,7 +20,7 @@ const ResultSearch = () => {
   dispatch(setCurrentPage(page)); //Camniar el currentPage
 
   const currentPage = useSelector((state) => state.globalValue.currentPage);
-  const [valorGlobal, error] = GetAnimeByParamas(
+  const [valorGlobal] = GetAnimeByParamas(
     "https://kitsu.io/api/edge/anime",
     currentPage,
     search
@@ -43,7 +43,7 @@ const ResultSearch = () => {
         columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
       >
         {loading ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : valorGlobal.length > 0 ? (
           valorGlobal.map(({ id, attributes }, index) => {
             return (
