@@ -2,7 +2,7 @@ import * as reactComponent from "@mui/material";
 import "../../css/cards/card-details.css";
 
 const CardDetails = ({ data }) => {
-  console.log("meele", data);
+  // console.log("meele", data);
 
   let ratingStars = data.averageRating / 20;
   ratingStars = Math.round(ratingStars);
