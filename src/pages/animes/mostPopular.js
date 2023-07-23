@@ -17,7 +17,7 @@ const MostPopularity = () => {
         {error === null ? (
           <h3> ERROR</h3>
         ) : data.length === 0 ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : (
           data.map(({ id, attributes }, index) => {
             return (

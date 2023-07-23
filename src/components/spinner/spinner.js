@@ -1,8 +1,13 @@
 import "../../css/spinner/spinner.css";
 
-const Spinner = (leftColor, rightColo) => (
+const Spinner = ({ leftColor, rightColor }) => (
   <div className="containerSpinner">
-    <div className="spinner"> </div>
+    <div
+      className="spinner"
+      style={{ borderLeftColor: leftColor, borderRightColor: rightColor }}
+    >
+      {" "}
+    </div>
     {/* <h6>CARGANDO...</h6> */}
   </div>
 );

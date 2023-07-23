@@ -36,7 +36,7 @@ const AnimeUpcoming = () => {
         {error === null ? (
           <h3> ERROR</h3>
         ) : loading ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : (
           data.map(({ id, attributes }, index) => {
             return (
@@ -52,7 +52,11 @@ const AnimeUpcoming = () => {
                 <CardPremiere
                   imagePremiere={attributes.posterImage.original}
                   titleAnime={attributes.canonicalTitle}
-                  resumeAnime={attributes.description.substring(0, 40) + "..."}
+                  resumeAnime={
+                    attributes.description
+                      ? attributes.description.substring(0, 40) + "..."
+                      : "..."
+                  }
                   id={id}
                   date={attributes.createdAt.substring(0, 10)}
                 />

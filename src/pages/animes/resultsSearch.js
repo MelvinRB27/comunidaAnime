@@ -43,7 +43,7 @@ const ResultSearch = () => {
         columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
       >
         {loading ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : valorGlobal.length > 0 ? (
           valorGlobal.map(({ id, attributes }, index) => {
             return (

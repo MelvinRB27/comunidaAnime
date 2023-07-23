@@ -68,7 +68,7 @@ const GroupCardPremiere = () => {
         {error === null ? (
           <h3> ERROR</h3>
         ) : data.length === 0 ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : (
           data.map(({ attributes }, index) => {
             return (

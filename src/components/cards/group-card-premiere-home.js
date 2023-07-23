@@ -23,7 +23,7 @@ const GroupCardPremiereHome = ({ title, countCard, url, path }) => {
         {error === null ? (
           <h3> ERROR</h3>
         ) : loading === 0 ? (
-          <Spinner />
+          <Spinner leftColor="#5aada8" rightColor="white" />
         ) : (
           data.map(({ id, attributes }, index) => {
             if (index < countCard) {
