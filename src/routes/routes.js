@@ -18,7 +18,10 @@ const LinksRoutes = () => {
       <Route path="/details-anime/:id" element={<DetailsAnime />} />
       <Route path="/in-broadcast/page/:page" element={<AnimeInBroadcast />} />
       <Route path="/in-upcoming/page/:page" element={<AnimeUpcoming />} />
-      <Route path="/result" element={<ResultSearch />} />
+      <Route
+        path="/result/search/:search/page/:page"
+        element={<ResultSearch />}
+      />
     </Routes>
   );
 };

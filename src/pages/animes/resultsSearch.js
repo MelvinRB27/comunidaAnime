@@ -6,19 +6,34 @@ import CardPremiere from "../../components/cards/card-premiere";
 import Pagination from "../../components/pagination/Pagination";
 
 //helpers
-import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { setCurrentPage } from "../../redux/GlobalReduxValue";
+
+import { GetAnimeByParamas } from "../../api/apiAxios";
 
 const ResultSearch = () => {
-  const [dateAnime, setDateAnime] = useState([]);
-  const valorGlobal = useSelector((state) => state.globalValue.animeSearch);
+  //tomar el parametro de la URL
+  const { page } = useParams();
+  const { search } = useParams();
+  const dispatch = useDispatch();
+  dispatch(setCurrentPage(page)); //Camniar el currentPage
+
+  const currentPage = useSelector((state) => state.globalValue.currentPage);
+  const [valorGlobal] = GetAnimeByParamas(
+    "https://kitsu.io/api/edge/anime",
+    currentPage,
+    search
+  );
+
+  // const valorGlobal = useSelector((state) => state.globalValue.animeSearch);
   const loading = useSelector((state) => state.globalValue.loading);
 
-  let val = valorGlobal.length > 0 ? valorGlobal : null;
+  // let val = valorGlobal.length > 0 ? valorGlobal : null;
 
-  useEffect(() => {
-    setDateAnime(val);
-  }, [val]);
+  // useEffect(() => {
+  //   setDateAnime(val);
+  // }, [val]);
 
   return (
     <>
@@ -28,9 +43,9 @@ const ResultSearch = () => {
         columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
       >
         {loading ? (
-          <Spinner />
-        ) : dateAnime !== null ? (
-          dateAnime.map(({ id, attributes }, index) => {
+          <Spinner leftColor="#5aada8" rightColor="white" />
+        ) : valorGlobal.length > 0 ? (
+          valorGlobal.map(({ id, attributes }, index) => {
             return (
               <reactComponent.Grid
                 item

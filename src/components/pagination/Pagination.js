@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { setCurrentPage } from "../../redux/GlobalReduxValue";
-
+import { useParams } from "react-router-dom";
 const Pagination = () => {
   const totalPages = useSelector((state) => state.globalValue.totalPages);
   const currentPage = useSelector((state) => state.globalValue.currentPage);
@@ -33,16 +33,24 @@ const Pagination = () => {
   );
 };
 
-const HandleClick = (sum, navigate, currentPage, dispatch, location) => {
+const HandleClick = (
+  sum,
+  navigate,
+  currentPage,
+  dispatch,
+  location,
+  search
+) => {
   const routeMap = {
     "/all-anime/page/": "/all-anime/page/",
     "/in-broadcast/page/": "/in-broadcast/page/",
     "/in-upcoming/page/": "/in-upcoming/page/",
+    "/result/search/": `/result/search/${search}/page/`,
   };
 
   sum
-    ? dispatch(setCurrentPage(currentPage + 1))
-    : dispatch(setCurrentPage(currentPage - 1));
+    ? dispatch(setCurrentPage(parseInt(currentPage) + 1))
+    : dispatch(setCurrentPage(parseInt(currentPage) - 1));
   let page = sum ? parseInt(currentPage) + 1 : parseInt(currentPage) - 1;
 
   for (const route in routeMap) {
@@ -54,13 +62,14 @@ const HandleClick = (sum, navigate, currentPage, dispatch, location) => {
 };
 
 const ButtonBack = () => {
+  const { search } = useParams();
   const navigate = useNavigate();
   const currentPage = useSelector((state) => state.globalValue.currentPage);
   const dispatch = useDispatch();
   let location = useLocation();
 
   const handleClick = () => {
-    HandleClick(false, navigate, currentPage, dispatch, location);
+    HandleClick(false, navigate, currentPage, dispatch, location, search);
   };
 
   return (
@@ -75,13 +84,14 @@ const ButtonBack = () => {
 };
 
 const ButtonNext = () => {
+  const { search } = useParams();
   const navigate = useNavigate();
   const currentPage = useSelector((state) => state.globalValue.currentPage);
   const dispatch = useDispatch();
   let location = useLocation();
 
   const handleClick = () => {
-    HandleClick(true, navigate, currentPage, dispatch, location);
+    HandleClick(true, navigate, currentPage, dispatch, location, search);
   };
 
   return (

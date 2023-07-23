@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setLoading,
-  setAnimeSearch,
+  // setAnimeSearch,
   setTotalPages,
 } from "../redux/GlobalReduxValue";
 
@@ -93,25 +93,30 @@ export const GetAnimeById = (url, id) => {
   return [data, error];
 };
 
-export const GetAnimeByParamas = (url, param) => {
+export const GetAnimeByParamas = (url, page, search, limit = 20) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState();
 
   const dispatch = useDispatch();
   useEffect(() => {
-    let params = `?filter[text]=${param}`;
+    // let params = `?filter[text]=${param}`;
+
+    const params = {
+      "filter[text]": search,
+      "page[limit]": limit,
+      "page[offset]": (page - 1) * limit,
+    };
 
     const getAnimesByParamas = async () => {
       dispatch(setLoading(true));
       await axios
-        .get(url + params)
+        .get(url, { params })
         .then((resp) => {
           setData(resp.data.data);
-          param && param !== "empty"
-            ? dispatch(setAnimeSearch(resp.data.data))
-            : param === "empty"
-            ? dispatch(setAnimeSearch("empty"))
-            : dispatch(setAnimeSearch([]));
+          // dispatch(setAnimeSearch(resp.data.data));
+          let numer = Math.round(resp.data.meta.count / 20);
+          numer = numer % 2 === 1 ? numer + 1 : numer; //VALIDA SI EL NUMERO ES IMPAR, SI LO ES LE SUMA 1, SI NO PUES SE QUEDA IGUAL
+          dispatch(setTotalPages(numer));
         })
         .catch((err) => {
           setError(err);
@@ -121,7 +126,7 @@ export const GetAnimeByParamas = (url, param) => {
         });
     };
     getAnimesByParamas();
-  }, [url, param, dispatch]);
+  }, [url, page, search, limit, dispatch]);
 
   return [data, error];
 };

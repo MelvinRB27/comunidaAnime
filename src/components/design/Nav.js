@@ -1,21 +1,28 @@
 // import * as reactComponent from "@mui/material";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 
-import { GetAnimeByParamas } from "../../api/apiAxios";
+// import { GetAnimeByParamas } from "../../api/apiAxios";
 import "../../css/design/Nav.css";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
-  const [result, setResult] = useState("");
-  GetAnimeByParamas("https://kitsu.io/api/edge/anime", result);
+  const navigate = useNavigate();
+
+  // const [result, setResult] = useState("");
+  // GetAnimeByParamas("https://kitsu.io/api/edge/anime", 1, result);
 
   let valueInput;
   const handleInputChange = async (event) => {
     const value = event.target.value;
     if (event.target.value.length > 0) {
-      setResult(value);
+      // setResult(value);
+      navigate(`/result/search/${value}/page/1`, { replace: true });
       valueInput = value;
-    } else setResult("empty");
+    } else {
+      // setResult("");
+      navigate("/all-anime/page/1", { replace: true });
+    }
     valueInput = "";
   };
 
