@@ -1,11 +1,11 @@
 .father-card-comunity {
   position: relative;
-  width: 170px;
+  width: 90%;
   height: 552px;
 }
 .container-card-comunity {
   position: relative;
-  width: auto;
+  width: 80%;
   left: 7%;
   /* top: 16.3%; */
   top: 5%;
@@ -23,6 +23,10 @@
   box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.container-children-card-comunity:hover {
+  background: rgb(152, 102, 10, 0.2);
 }
 
 .avatar-card-comunity {
@@ -43,4 +47,45 @@
   align-items: center;
   text-align: center;
   color: #ffffff;
+}
+
+/* Responsive*/
+@media (max-width: 880px) {
+  .father-card-comunity {
+    position: relative;
+    width: 110px;
+    height: 222px;
+  }
+
+  .container-card-comunity {
+    top: 2%;
+  }
+
+  .container-children-card-comunity {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    height: 30px;
+  }
+
+  .avatar-card-comunity {
+    position: relative;
+    border-radius: 50%;
+    width: 25px;
+    height: auto;
+  }
+
+  .nameComunity-card-comunity {
+    font-family: "Inter";
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 10px;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 1920px) {
+  .container-card-comunity {
+    width: 70%;
+  }
 }

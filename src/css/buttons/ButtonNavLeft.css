@@ -23,8 +23,43 @@
   border-radius: 20px 50px;
 
   font-family: "Inter";
-  font-style: normal; font-weight: normal;
+  font-style: normal;
+  font-weight: normal;
   font-weight: 700;
   font-size: 11px;
   line-height: 18px;
+}
+
+/*Responsive*/
+@media (min-width: 1920px) {
+  .container-btn-nav-left .btn-nav-left {
+    width: 100%;
+  }
+}
+
+@media (max-width: 880px) {
+  .nav-left-btns {
+    display: block;
+    width: 100%;
+  }
+  .container-btn-nav-left {
+    width: 90%;
+    /* height: 30px; */
+    /* background-color: aqua; */
+  }
+
+  .container-btn-nav-left .circle-btn-nav-left {
+    left: 7.5%;
+    top: 25%;
+    bottom: 31.58%;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+  }
+  .container-btn-nav-left .btn-nav-left {
+    width: 100%;
+    height: 60%;
+    font-size: 8px;
+    line-height: 10px;
+  }
 }

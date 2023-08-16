@@ -31,7 +31,7 @@ const AllAnime = () => {
       <h3 className="title-grop-premiere">TODOS</h3>
       <reactComponent.Grid
         container
-        columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
+        columns={{ xs: 6, sm: 10, md: 18, xl: 15 }}
       >
         {error === null ? (
           <h3> ERROR</h3>

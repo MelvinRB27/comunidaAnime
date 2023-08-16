@@ -1,6 +1,6 @@
 .container-card-details {
   position: relative;
-  width: 100%;
+  width: 95%;
   height: 500px;
   margin-top: 1%;
   /* background: #0a1929; */
@@ -48,7 +48,9 @@
 
 .description-details {
   position: relative;
-  float: right;
+  margin: auto;
+  margin-top: 10%;
+  /* float: right; */
   width: 420px;
   font-family: "Inter";
   font-style: normal;
@@ -108,7 +110,7 @@ ul {
   /* background: url(https://media.kitsu.io/anime/poster_images/4/original.jpg); */
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (max-width: 1920px) {
   .div-cover-title {
     gap: 45px;
   }
@@ -117,6 +119,7 @@ ul {
   }
 
   .description-details {
+    margin-top: 50%;
     width: 850px;
     font-size: 20px;
     margin-top: 2%;
@@ -126,5 +129,71 @@ ul {
     float: right;
     align-items: center;
     margin-bottom: 7%;
+  }
+}
+
+/*Responsive*/
+@media (max-width: 880px) {
+  .container-card-details {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-top: 1%;
+  }
+
+  .rectangle-cover {
+    width: 100%;
+    height: 180px;
+  }
+
+  .ellipse-rating {
+    width: 40px;
+    height: 40px;
+    right: 1.5%;
+    bottom: -75%;
+  }
+  .rating-popularity {
+    right: 12%;
+    bottom: -80%;
+  }
+  .number-rating-popularity {
+    position: relative;
+    font-size: 10px;
+    color: white;
+  }
+
+  .description-details {
+    float: none;
+    margin: auto;
+    text-align: center;
+    width: 320px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  .div-cover-title {
+    display: flex;
+    gap: 35px;
+    position: relative;
+    top: -23%;
+    left: 2%;
+  }
+  .div-title {
+    display: inline-block;
+    text-transform: capitalize;
+    margin-top: 0%;
+  }
+
+  .div-title h3,
+  ul {
+    font-size: 15px;
+  }
+
+  .div-cover-title .avatar-card-details {
+    width: 210px;
+    height: 300px;
   }
 }
