@@ -40,7 +40,7 @@ const ResultSearch = () => {
       <h3 className="title-grop-premiere">Resultado</h3>
       <reactComponent.Grid
         container
-        columns={{ xs: 4, sm: 10, md: 18, xl: 15 }}
+        columns={{ xs: 6, sm: 10, md: 18, xl: 15 }}
       >
         {loading ? (
           <Spinner leftColor="#5aada8" rightColor="white" />

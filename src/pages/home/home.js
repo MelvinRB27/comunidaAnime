@@ -2,16 +2,16 @@
 import GroupCardPremiereHome from "../../components/cards/group-card-premiere-home";
 const Home = () => {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <GroupCardPremiereHome
         title="Entérate de los más populares de estas semanas"
-        countCard={3}
+        countCard={4}
         url="https://kitsu.io/api/edge/trending/anime"
         path="/most-popularity"
       />
       <GroupCardPremiereHome
         title="Los mejores animes lo tienes aquí"
-        countCard={6}
+        countCard={8}
         url="https://kitsu.io/api/edge/anime"
         path="/most-popularity"
       />

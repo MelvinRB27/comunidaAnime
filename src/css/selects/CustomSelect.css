@@ -39,3 +39,20 @@ select option {
 
   color: #ffffff;
 }
+
+/*Responsive*/
+@media (max-width: 880px) {
+  .select-custom {
+    width: 60px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  select option {
+    font-size: 10px;
+  }
+
+  .title-select {
+    font-size: 13px;
+  }
+}
