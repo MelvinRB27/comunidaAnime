@@ -23,6 +23,7 @@
     height: 25px;
   }
   .div-buttons .btn-main {
-    left: 100%;
+    top: 15%;
+    left: 10%;
   }
 }

@@ -2,7 +2,7 @@ import "./App.css";
 
 //components
 import Nav from "./components/design/Nav";
-import NavLeft from "./components/design/NavLeft";
+import NavBar from "./components/design/NavBar";
 import NavRigth from "./components/design/NavRigth";
 import YourComunity from "./components/cards/your-comunity";
 //Routes
@@ -26,17 +26,19 @@ const App = () => {
     document.title = docTitle;
   });
 
-  const ScreenWidth = window.screen.width <= 900;
+  const ScreenWidth = window.screen.width <= 1000;
   // RedirectResutl();
 
   const isPageAll = location.pathname.includes("/all-anime/page/");
   return (
     <div className="containerApp">
       <Nav />
+      {ScreenWidth ? <NavBar nameClass={"nav-cell-btns"} /> : null}
+
       <div className="containerApp-children">
         {!ScreenWidth ? (
           <div className="container-left">
-            <NavLeft />
+            <NavBar nameClass={"nav-left-btns"} />
             <YourComunity />
           </div>
         ) : null}

@@ -62,4 +62,26 @@
     font-size: 8px;
     line-height: 10px;
   }
+
+  .nav-cell-btns {
+    margin-top: 1%;
+    display: flex;
+    gap: 19%;
+  }
+
+  .nav-cell-btns .container-btn-nav-left .circle-btn-nav-left {
+    left: 5%;
+    top: 15%;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+  }
+
+  .nav-cell-btns .container-btn-nav-left .btn-nav-left {
+    position: absolute;
+    text-align: right;
+    width: 72px;
+    height: 50%;
+    margin-top: 2%;
+  }
 }
