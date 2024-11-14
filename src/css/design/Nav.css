@@ -29,7 +29,7 @@ a {
 
 .text-logo {
   text-align: center;
-  float: inline-end;
+  /* float: inline-end; */
   justify-items: center;
   text-transform: uppercase;
   text-decoration: none;
